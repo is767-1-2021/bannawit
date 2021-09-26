@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+
+import 'package:first_app/model/first_form_model.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/fifth_page.dart';
@@ -9,32 +12,39 @@ import 'pages/sixth_page.dart';
 import 'pages/third_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => FirstFormModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Colors.amber,
-        accentColor: Colors.amber,
-        textTheme: TextTheme(
-          bodyText2: TextStyle(color: Colors.purple),
-        )
-      ),
-      initialRoute: '/5',
-      routes: <String, WidgetBuilder> {
-        '/1': (context) => FirstPage(),
-        '/2': (context) => SecondPage(),
-        '/3': (context) => ThirdPage(),
-        '/4': (context) => FourthPage(),
-        '/5': (context) => FifthPage(),
-        '/6': (context) => SixthPage(),
-        '/7': (context) => SeventhPage(),
-      }
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primaryColor: Colors.amber,
+            accentColor: Colors.amber,
+            textTheme: TextTheme(
+              bodyText2: TextStyle(color: Colors.purple),
+            )),
+        initialRoute: '/5',
+        routes: <String, WidgetBuilder>{
+          '/1': (context) => FirstPage(),
+          '/2': (context) => SecondPage(),
+          '/3': (context) => ThirdPage(),
+          '/4': (context) => FourthPage(),
+          '/5': (context) => FifthPage(),
+          '/6': (context) => SixthPage(),
+          '/7': (context) => SeventhPage(),
+        });
   }
 }
 
@@ -49,7 +59,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-    Image cat = Image.asset(
+  Image cat = Image.asset(
     'assets/Popcat2.jpg',
     width: 300,
   );
@@ -90,11 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               height: 200.0,
-              margin: EdgeInsets.only(
-                left: 100.0,
-                right: 100.0,
-                bottom: 20.0
-               ),
+              margin: EdgeInsets.only(left: 100.0, right: 100.0, bottom: 20.0),
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: Colors.amber.withOpacity(0.256),
@@ -128,7 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-
           ],
         ),
       ),
@@ -149,7 +154,7 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       child: Text(this.buttonText),
-      onPressed: (){
+      onPressed: () {
         print('Pressing');
       },
     );

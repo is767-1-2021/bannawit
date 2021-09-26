@@ -1,18 +1,22 @@
-import 'package:flutter/material.dart';
+import 'dart:js';
 
-class SixthPage extends StatelessWidget{
+import 'package:first_app/model/first_form_model.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class SixthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Form')
-        ,),
-        body: MyCustomForm(),
+        title: Text('First Form'),
+      ),
+      body: MyCustomForm(),
     );
   }
 }
 
-class MyCustomForm extends StatefulWidget{
+class MyCustomForm extends StatefulWidget {
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
 }
@@ -28,76 +32,81 @@ class _MyCustomFormState extends State<MyCustomForm> {
     return Form(
       key: _formKey,
       child: Column(
-      children: [
-        TextFormField(
-          decoration: InputDecoration(
-            border: UnderlineInputBorder (),
-            labelText: 'Enter your firstname',
-            icon: Icon(Icons.business),
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your firstname',
+              icon: Icon(Icons.business),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter firstname';
+              }
+
+              return null;
+            },
+            onSaved: (value) {
+              _firstName = value;
+            },
+            initialValue: context.read<FirstFormModel>().firstName,
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter firstname';
-            }
+          TextFormField(
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your lastname',
+              icon: Icon(Icons.family_restroom),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter lastname';
+              }
 
-            return null;
-          },
-          onSaved: (value) {
-           _firstName = value;
-          },
-        ),
-        TextFormField(
-          decoration: InputDecoration(
-            border: UnderlineInputBorder (),
-            labelText: 'Enter your lastname',
-            icon: Icon(Icons.family_restroom),
+              return null;
+            },
+            onSaved: (value) {
+              _lastName = value;
+            },
+            initialValue: context.read<FirstFormModel>().lastName,
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter lastname';
-            }
+          TextFormField(
+            decoration: InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your age',
+              icon: Icon(Icons.ring_volume),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter age';
+              }
 
-            return null;
-          },
-          onSaved: (value) {
-            _lastName = value;
-          },
-        ),
-        TextFormField(
-          decoration: InputDecoration(
-            border: UnderlineInputBorder (),
-            labelText: 'Enter your age',
-            icon: Icon(Icons.ring_volume),
+              if (int.parse(value) < 18) {
+                return 'Please enter valid age.';
+              }
+
+              return null;
+            },
+            onSaved: (value) {
+              _age = int.parse(value!);
+            },
+            initialValue: context.read<FirstFormModel>().age.toString(),
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter age';
-            }
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
 
-            if (int.parse(value) < 18) {
-              return 'Please enter valid age.';
-            }
+                context.read<FirstFormModel>().firstName = _firstName;
+                context.read<FirstFormModel>().lastName = _lastName;
+                context.read<FirstFormModel>().age = _age;
 
-            return null;
-          },
-          onSaved: (value) {
-            _age = int.parse(value!);
-          },
-        ),
-        ElevatedButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              _formKey.currentState!.save();
-
-              var response = 'Horay = $_firstName $_lastName $_age';
-
-              Navigator.pop(context, response);
-            }
-          },
-          child: Text('Validate'),
-        )
-      ],
-     ),
+                Navigator.pop(context);
+              }
+            },
+            child: Text('Validate'),
+          )
+        ],
+      ),
     );
   }
 }
