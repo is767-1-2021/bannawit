@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:team_app/Model/Prize.dart';
 import 'package:team_app/Pages/LottoList.dart';
+import 'package:provider/provider.dart';
 
 class CheckPage extends StatefulWidget {
   @override
@@ -9,27 +11,7 @@ class CheckPage extends StatefulWidget {
 
 class _CheckPageState extends State<CheckPage> {
   final _formKey = GlobalKey<FormState>();
-  List<Prize> prize = [
-    Prize(prizeName: 'รางวัลที่ 1', numbers: ['145621']),
-    Prize(prizeName: 'เลขหน้า 3 ตัว', numbers: ['118', '309']),
-    Prize(prizeName: 'เลขท้าย 3 ตัว', numbers: ['143', '716']),
-    Prize(prizeName: 'เลขท้าย 2 ตัว', numbers: ['12']),
-    Prize(
-        prizeName: 'รางวัลที่ 2',
-        numbers: ['123456', '123456', '123456', '123456', '123456']),
-    Prize(prizeName: 'รางวัลที่ 3', numbers: [
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456',
-      '123456'
-    ]),
-  ];
+  String? _lottoNo;
 
   List<LottoList> NoList = [
     LottoList('รางวัลที่ 1', '145621'),
@@ -99,6 +81,8 @@ class _CheckPageState extends State<CheckPage> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'โปรดใส่เลขสลากของท่าน';
+                    } else if (int.parse(value) > 999999) {
+                      return 'หมายเลขต้องมีความยาว 6 ตัว';
                     } else if (value == '145621') {
                       Navigator.pushNamed(
                         context,
@@ -115,14 +99,23 @@ class _CheckPageState extends State<CheckPage> {
                     } else if (value != '145622') {
                       Navigator.pushNamed(context, '/6');
                     }
+                    return null;
                   },
+                  onSaved: (value) {
+                    _lottoNo = value;
+                  },
+                  initialValue: context.read<FirstFormModel>().lottoNo,
                 ),
               ),
               Container(
                 margin: EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+
+                      context.read<FirstFormModel>().lottoNo = _lottoNo;
+                    }
                   },
                   child: Text('ตรวจ'),
                   style: ElevatedButton.styleFrom(primary: Colors.purple[200]),

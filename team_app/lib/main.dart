@@ -14,7 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CheckPrize(),
+          create: (context) => FirstFormModel(),
         ),
       ],
       child: MyApp(),
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             textTheme: TextTheme(
               bodyText2: TextStyle(color: Colors.purple),
             )),
-        initialRoute: '/1',
+        initialRoute: '/2',
         routes: <String, WidgetBuilder>{
           '/1': (context) => LottoNewsPage(),
           '/2': (context) => CheckPage(),

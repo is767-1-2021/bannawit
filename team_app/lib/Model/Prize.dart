@@ -1,17 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class CheckPrize extends ChangeNotifier {
-  List<Prize>? _checkPrize;
-  get checkPrize => this._checkPrize;
+class FirstFormModel extends ChangeNotifier {
+  String? _lottoNo;
 
- set checkPrize( value) => {this._checkPrize = value, notifyListeners()};
-}
-class Prize {
-  final String prizeName;
-  final List<String> numbers;
-  const Prize({
-    Key? key,
-    required this.prizeName,
-    required this.numbers,
-  });
+  get lottoNo => this._lottoNo;
+
+  set lottoNo(value) {
+    this._lottoNo = value;
+    notifyListeners();
+  }
 }
