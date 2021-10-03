@@ -81,7 +81,7 @@ class _CheckPageState extends State<CheckPage> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'โปรดใส่เลขสลากของท่าน';
-                    } else if (int.parse(value) > 999999) {
+                    } else if (value.length != 6) {
                       return 'หมายเลขต้องมีความยาว 6 ตัว';
                     } else if (value == '145621') {
                       Navigator.pushNamed(
@@ -152,7 +152,8 @@ class _CheckPageState extends State<CheckPage> {
                       ),
                       subtitle: Center(
                         child: Container(
-                          margin: EdgeInsets.all(5.0),
+                          margin: EdgeInsets.only(
+                              left: 25.0, right: 25, top: 8, bottom: 8),
                           child: Text(
                             huay.prize,
                             style: TextStyle(
