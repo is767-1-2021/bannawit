@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:team_app/models/news_model.dart';
-import 'package:team_app/services/services.dart';
+import 'package:team_app/services/newsServices.dart';
 
 class NewsController {
   final Services service;
