@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: 'Prompt',
           bottomAppBarColor: Colors.purple[200]),
-      initialRoute: '/check',
+      initialRoute: '/news',
       routes: <String, WidgetBuilder>{
         '/': (context) => HomeScreen(),
         '/acc': (context) => Account(),

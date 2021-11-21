@@ -97,7 +97,7 @@ class _NewspageState extends State<Newspage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test Lotto News'),
+        title: Text('ข่าวสารเลขเด็ด'),
       ),
       body: Center(
         child: body,
@@ -140,56 +140,41 @@ class _DetailNewsState extends State<DetailNews> {
   }
 
   Widget get body => Column(
-        children: [Text(news.header), Text(news.newsDetail)],
+        children: [
+          Container(
+            width: 400,
+            margin: EdgeInsets.only(
+                left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
+            // padding: EdgeInsets.all(7.0),
+            // decoration: BoxDecoration(
+            //   color: Colors.purple[50],
+            // borderRadius: BorderRadius.circular(10.0),
+            // ),
+            child: Text(
+              news.header,
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
+            // padding: EdgeInsets.all(7.0),
+            // decoration: BoxDecoration(
+            //   color: Colors.purple[50],
+            //   borderRadius: BorderRadius.circular(10.0),
+            // ),
+            child: Text(
+              news.newsDetail,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
       );
-  // Widget get body => ListView.builder(
-  //     itemCount: news.isEmpty ? 1 : news.length,
-  //     itemBuilder: (context, index) {
-  //       if (news.isEmpty) {
-  //         return Text('No Data');
-  //       }
-
-  //       return Card(
-  //         child: Container(
-  //           height: 120,
-  //           child: Column(
-  //             children: <Widget>[
-  //               Table(
-  //                 children: [
-  //                   TableRow(
-  //                     children: [
-  //                       Container(
-  //                         child: ConstrainedBox(
-  //                           constraints: BoxConstraints(
-  //                             minWidth: 120,
-  //                             minHeight: 120,
-  //                             maxWidth: 120,
-  //                             maxHeight: 120,
-  //                           ),
-  //                           child: ListTile(
-  //                             leading: Image.asset(
-  //                                 'assets/images/' + news[index].image,
-  //                                 fit: BoxFit.cover),
-  //                             title: Text(news[index].header),
-  //                             subtitle: Text(news[index].newsDetail),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News Detail'),
+        title: Text('รายละเอียดข่าว'),
       ),
       body: Center(
         child: body,
