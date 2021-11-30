@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "242757734516",
+    "project_id": "is767-2021-bannawit",
+    "storage_bucket": "is767-2021-bannawit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242757734516:android:691d031413ce48783fc121",
+        "android_client_info": {
+          "package_name": "com.example.final_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242757734516-fm22bls2t0614lu08bu19eog3gg74ak1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtSPc7pGxs0XfADtvRDBj8gyEi5Tx8pMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242757734516-fm22bls2t0614lu08bu19eog3gg74ak1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

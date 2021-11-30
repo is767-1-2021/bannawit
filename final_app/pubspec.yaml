@@ -1,0 +1,35 @@
+name: final_app
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.1
+  web_socket_channel: ^2.1.0
+  http: ^0.13.3
+  firebase_core: "^1.7.0"
+  cloud_firestore: "^2.5.3"
+
+  cupertino_icons: ^1.0.2
+  calendar_appbar: ^0.0.5
+  table_calendar: ^3.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/income.png
+    - assets/images/expense.png
+
